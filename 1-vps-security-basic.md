@@ -161,5 +161,10 @@ Tạo và quy định password policy cho team và system.
 Cần đảm bảo kiểm soát được tài nguyên VPS hàng ngày, cũng như xem tình trạng cấu hình fail2ban sshd.
 
 1. Tạo Telegram bot và ID Group (Public).
-2. Đầu tiên mình sẽ dùng bashscript vps-report.sh để lấy thông tin cần thiết.
+2. Dùng bashscript vps-report.sh để lấy thông tin cần thiết.
+3. Dùng `crontab -e`  để lên lịch notify Telegram
 
+   ```
+   ## Sẽ run file vps-infor.sh vào mỗi 23h hàng ngày
+   0 23 * * * /root/vps-infor.sh
+   ```
