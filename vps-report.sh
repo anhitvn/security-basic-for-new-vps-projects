@@ -3,6 +3,8 @@
 # Telegram Bot Token and Chat ID - Thay đổi nếu cần
 BOT_TOKEN="token ID"
 CHAT_ID="Chat Group ID"
+VOLUME="/dev/sda1"
+
 # Thay /dev/sda3 bằng phân vùng bạn muốn kiểm tra
 # Hàm lấy IP Address (sử dụng curl ifconfig.me để lấy public IP)
 get_ip() {
@@ -41,7 +43,7 @@ get_ram() {
 
 # Hàm lấy Disk info cho /dev/sda1
 get_disk() {
-    df -h /dev/sda1 | tail -1 | awk '{print "Total: " $2 ", Used: " $3 " (" $5 "), Free: " $4}'
+    df -h $VOLUME | tail -1 | awk '{print "Total: " $2 ", Used: " $3 " (" $5 "), Free: " $4}'
 }
 
 get_sshd_ban_ip(){

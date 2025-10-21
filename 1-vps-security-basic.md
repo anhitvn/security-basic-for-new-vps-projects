@@ -1,4 +1,4 @@
-# Cấu hình Networkk & Security cơ bản khi tiếp nhận VPS Linux mới
+# Cấu hình Networkk & Security và thao tác cơ bản khi tiếp nhận VPS (Linux)
 
 Giai đoạn đầu, khi vừa tiếp nhận VPS, cần có các bước setup, config Security cơ bản.
 
@@ -106,7 +106,7 @@ ufw enable
 
   ```
   cp /etc/fail2ban/jail.conf /etc/jail2ban/jail.local
-  ​
+
   ```
 - Cấu hình cơ bản cho fail2ban
 
@@ -127,7 +127,7 @@ ufw enable
 
 Ví dụ, Policy cơ bản mình đưa ra:
 
--  khẩu tối thiểu 16 ký tự.
+- khẩu tối thiểu 16 ký tự.
 - Bao gồm chữ hoa, chữ thường, số, và ký tự đặc biệt.
 - Thay đổi mỗi 60 ngày với các hệ thống quan trọng.
 
@@ -158,7 +158,30 @@ Tạo và quy định password policy cho team và system.
 
 ### 9. Monitoring/Log/Report VPS: Kiển soát tài nguyên
 
-Cần đảm bảo kiểm soát được tài nguyên VPS hàng ngày, cũng như xem tình trạng cấu hình fail2ban sshd.
+Cần đảm bảo kiểm soát được phần cứng cũng như tài nguyên VPS hàng ngày, cũng như xem tình trạng cấu hình fail2ban sshd.
+
+Các lệnh check cấu hình vps sẵn có:
+
+```
+# Check cấu hình vps
+top
+# Check cpu
+cat /etc/cpuinfo
+# Check ram
+free -h
+#Check disk
+df -h
+# Check phiên bản nhân Linux
+uname -a
+# Phiên bản OS
+lsb_releae -a
+cat /etc/os-release
+# Check disk I/O (Không dùng được trê terminal MacOS)
+dd if=/dev/zero of=./duongtest bs=1M count=1024
+
+```
+
+Tạo bot Telegram và set cronjob
 
 1. Tạo Telegram bot và ID Group (Public).
 2. Dùng bashscript vps-report.sh để lấy thông tin cần thiết.
