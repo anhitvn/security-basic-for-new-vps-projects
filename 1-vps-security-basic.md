@@ -24,8 +24,14 @@ Việc kiểm tra Network của VPS không ảnh hưởng trực tiếp đến S
   - CentOS/RHEL:  `/etc/sysconfig/network-scripts/ifcfg-eth0`
   - Ubuntu/Debian cũ: `/etc/network/interfaces`
 - Kiểm tra cấu hình dns tại file `/etc/resolv.conf` or `/etc/systemd/resolv.conf`
+  ![dns-resolv.png](./.img/dns-resolv.png)
+  Khởi động lại DNS
 
-Dùng  lệnh `ip r` hoặc `route -n` để kiểm tra gateway mặc định (default gateway).
+  ```
+  sudo systemctl restart resolvconf.service
+  sudo systemctl restart systemd-resolved.service
+  ```
+- Dùng  lệnh `ip r` hoặc `route -n` để kiểm tra gateway mặc định (default gateway).
 
 Cần biết VPS đang config IP theo DHCP (Default) hay set config Manual.
 
